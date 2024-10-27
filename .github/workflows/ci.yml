@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version:
+          - '3.9'
+          - '3.10'
+          - '3.11'
+          - '3.12'
+          - '3.13'
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3.2.0
+        with:
+          enable-cache: true
+
+      - name: Install Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install dependencies with uv
+        run: uv sync --all-extras --dev -p ${{ matrix.python-version }}
+
+      - name: Run tests with tox
+        run: uv run tox

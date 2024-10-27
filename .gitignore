@@ -30,11 +30,15 @@
 !.ruff.toml
 !pyproject.toml
 !tox.ini
+!uv.lock
 
 # Directories
 !/src/**/*.py
 !/tests/**/*.py
 !/tests/data/*.json
+
+# GitHub Workflows
+!/.github/**/*.y*ml
 
 # --------- Add items which should *ALWAYS* be ignored below this line ---------
 **/docker/**/data/
