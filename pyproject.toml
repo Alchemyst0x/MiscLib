@@ -1,8 +1,8 @@
 [project]
-  name            = "Miscellany"
+  name            = "MiscLib"
   version         = "0.1.1"
   requires-python = ">= 3.12"
-  description     = "A collection of Python 3.12+ utility functions and other miscellany."
+  description     = "A small library of Python 3.12+ utility functions and other useful miscellany."
   readme          = "README.md"
   license         = { text = "Apache-2.0" }
   authors         = [{ name = "Alchemyst0x", email = "alchemyst@alchemyst.io" }]
@@ -10,7 +10,7 @@
   dependencies = []
 
   [project.scripts]
-    "misc" = "miscellany:main"
+    "misc" = "misclib:main"
 
 [build-system]
   requires      = ["hatchling"]
@@ -20,7 +20,7 @@
   allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-  packages = ["src/miscellany"]
+  packages = ["src/misclib"]
 
 [tool.rye]
   managed           = true
