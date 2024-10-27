@@ -1,13 +1,13 @@
 [project]
   name            = "MiscLib"
   version         = "0.1.1"
-  requires-python = ">= 3.12"
+  requires-python = ">= 3.9"
   description     = "A small library of Python 3.12+ utility functions and other useful miscellany."
   readme          = "README.md"
   license         = { text = "Apache-2.0" }
   authors         = [{ name = "Alchemyst0x", email = "alchemyst@alchemyst.io" }]
 
-  dependencies = []
+  dependencies = ["python-dotenv>=1.0.1"]
 
   [project.scripts]
     "misc" = "misclib:main"
@@ -22,10 +22,8 @@
 [tool.hatch.build.targets.wheel]
   packages = ["src/misclib"]
 
-[tool.rye]
-  managed           = true
-  lock-with-sources = true
-  generate-hashes   = true
+[tool.uv]
+  managed = true
 
   dev-dependencies = [
     "mypy>=1.13.0",
@@ -34,7 +32,13 @@
     "ruff>=0.7.1",
     "pytest>=8.3.3",
     "devtools>=0.12.2",
+    "coverage>=7.6.4",
+    "tox>=4.23.2",
   ]
+
+  [tool.uv.pip]
+    require-hashes   = true
+    compile-bytecode = true
 
 [tool.codespell]
   builtin           = "clear,code,informal,rare,usage"
