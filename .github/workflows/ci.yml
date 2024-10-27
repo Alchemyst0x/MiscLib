@@ -22,6 +22,17 @@ jobs:
     steps:
       - name: Check out the code
         uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Load secrets from 1Password
+        uses: 1password/load-secrets-action@v2
+        id: op-load-secrets
+        with:
+          export-env: true
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          CODECOV_TOKEN: 'op://ho2ovofyavan72msz26pr6qbfe/CODECOV_TOKEN/CodeCov/CODECOV_TOKEN'
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v3.2.0
@@ -36,3 +47,10 @@ jobs:
 
       - name: Run tests with tox
         run: uv run tox
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ env.CODECOV_TOKEN }}
+        env:
+          CODECOVE_TOKEN: ${{ env.CODECOV_TOKEN }}
