@@ -29,12 +29,12 @@
 !.python-version
 !.ruff.toml
 !pyproject.toml
-!requirements-dev.lock
-!requirements.lock
+!tox.ini
 
 # Directories
 !/src/**/*.py
 !/tests/**/*.py
+!/tests/data/*.json
 
 # --------- Add items which should *ALWAYS* be ignored below this line ---------
 **/docker/**/data/
